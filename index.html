@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Поиск автозапчастей</title>
+</head>
+<body>
+  <h2>Поиск автозапчастей</h2>
+
+  <input id="query" style="width: 400px;"
+    placeholder="Например: масляный фильтр KIA K5 2024 2л" />
+
+  <button onclick="search()">Найти</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    async function search() {
+      const q = document.getElementById('query').value;
+      const res = await fetch('/api/parse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: q })
+      });
+      const data = await res.json();
+      document.getElementById('result').textContent =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
