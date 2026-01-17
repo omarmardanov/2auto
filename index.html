@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Поиск автозапчастей</title>
-</head>
-<body>
-  <h2>Поиск автозапчастей</h2>
-
-  <input id="query" style="width: 400px;"
-    placeholder="Например: масляный фильтр KIA K5 2024 2л" />
-
-  <button onclick="search()">Найти</button>
-
-  <pre id="result"></pre>
-
-  <script>
-    async function search() {
-      const q = document.getElementById('query').value;
-      const res = await fetch('/api/parse', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: q })
-      });
-      const data = await res.json();
-      document.getElementById('result').textContent =
-        JSON.stringify(data, null, 2);
-    }
-  </script>
-</body>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="homepage">
+      <div class="container-left">
+        <div class="content-left">
+          <div class="container-title">
+            <p class="title">
+              <span class="text-wrapper">Avto məhsulları və ehtiyat hissələri </span> <span class="span">Bakida</span>
+            </p>
+            <div class="search-box">
+              <p class="label">Ağıllı axtarış sizə kömək edəcək</p>
+                  <div class="input-container">
+                    <input class="input"
+                    type="text"
+                    placeholder="2020 Kia K5 üçün 2L benzin yağı filtri"
+                    />
+                    <button class="search-button" aria-label="Поиск">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.46973 3.21973C8.76262 2.92684 9.23738 2.92684 9.53027 3.21973L14.7803 8.46974C14.8161 8.5056 14.8482 8.54517 14.8762 8.58766C14.8948 8.61578 14.9109 8.64498 14.9253 8.67482C14.9416 8.70871 14.9559 8.7438 14.967 8.78029C14.9717 8.79551 14.9751 8.81101 14.9788 8.82644C14.992 8.88221 15 8.9402 15 9.00002C15 9.06227 14.9909 9.12236 14.9766 9.1802C14.9734 9.1929 14.9709 9.20573 14.967 9.21828C14.9559 9.25503 14.9417 9.29036 14.9253 9.32448C14.9103 9.35573 14.8929 9.38596 14.8733 9.4153C14.8639 9.42944 14.8536 9.44288 14.8433 9.45632C14.8237 9.48167 14.8035 9.50705 14.7803 9.53029L9.53027 14.7803C9.23739 15.0732 8.76261 15.0732 8.46973 14.7803C8.17684 14.4874 8.17686 14.0127 8.46973 13.7198L12.4395 9.75002H3.75C3.33581 9.75002 3.00003 9.41421 3 9.00002C3 8.5858 3.33579 8.25002 3.75 8.25002H12.4395L8.46973 4.28028C8.17684 3.9874 8.17686 3.51263 8.46973 3.21973Z" fill="white"/>
+                      </svg>
+                    </button>
+                  </div>
+              <p class="description">
+                Daha yaxşı axtarış üçün, zəhmət olmasa, nəqliyyat vasitəsinin hissəsini, markasını, modelini, nəslini və
+                ya kuzov növünü, istehsal ilini, mühərrik həcmini və yanacaq növünü qeyd edin.
+              </p>
+            </div>
+          </div>
+          <p class="footer">Mağazanızı qoşmaq üçün ünvanına yazın omamardanov</p>
+        </div>
+      </div>
+      <div class="container-right"><img class="car" src="car.png" />
+        <!-- контейнер для результатов -->
+        <div class="results" hidden></div>
+      </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
